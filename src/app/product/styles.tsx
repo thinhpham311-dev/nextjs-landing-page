@@ -184,6 +184,10 @@ const ProductPage = styled.div(() => [
       ${tw`overflow-hidden rounded-[2.2rem] border border-secondary-2 bg-[linear-gradient(135deg,rgba(17,55,202,0.9),rgba(4,11,34,0.95))] p-7 md:p-10`}
     }
 
+    .cta-panel .eyebrow {
+      ${tw`mb-5`}
+    }
+
     .cta-panel h2 {
       ${tw`max-w-[760px] text-xs font-type-2 leading-[1.1] tracking-[-0.025em] text-white md:text-sm`}
     }

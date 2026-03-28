@@ -12,7 +12,7 @@ const PostsWrapper = styled.section(() => [
             &--left{
                 ${tw` h-full xl:w-[48%] lg:w-[48%] md:w-[48%] w-full  rounded-[10px] overflow-hidden`}
                 img{
-                    ${tw`w-full object-cover h-[25vh] hover:scale-110 transition-all duration-500`}
+                    ${tw`w-full object-cover h-[25vh] transition-all duration-500`}
                 }
             }
             &--right{
@@ -24,6 +24,9 @@ const PostsWrapper = styled.section(() => [
                     ${tw`font-thin xl:text-4xs lg:text-4xs text-5xs text-[#3736369c]`}
                 }
             }
+        }
+        .post-link{
+            ${tw`block transition-transform duration-300 hover:-translate-y-1`}
         }
         .btn-view-all{
             ${tw`mx-auto mt-[10vh] flex gap-x-[10px] items-center`}

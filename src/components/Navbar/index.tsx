@@ -42,10 +42,14 @@ const Navbar = () => {
                     width={100}
                     height={100}
                     alt="Picture of the author"
+                    quality={100}
+                    sizes="100px"
                 />
             </Link>
             <div className="right-navbar--button" id="right-nav">
-                <Button type="button" className="btn-demo" $isSmall $variant="transparent">Book a Demo</Button>
+                <Link href="/book-demo">
+                    <Button type="button" className="btn-demo" $isSmall $variant="transparent">Book a Demo</Button>
+                </Link>
                 <div ref={navRef} className="navbar-hamburger-menu">
                     <Menu />
                 </div>

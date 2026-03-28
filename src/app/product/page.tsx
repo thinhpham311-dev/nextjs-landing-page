@@ -90,9 +90,11 @@ export default function Product() {
                     Back Home
                   </Button>
                 </Link>
-                <Button type="button" $variant="transparent">
-                  Book a Demo
-                </Button>
+                <Link href="/book-demo">
+                  <Button type="button" $variant="transparent">
+                    Book a Demo
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="hero-card">
@@ -103,6 +105,8 @@ export default function Product() {
                   width={1200}
                   height={960}
                   priority
+                  quality={100}
+                  sizes="(max-width: 1024px) 100vw, 44vw"
                 />
               </div>
               <div className="hero-thumbs">
@@ -112,6 +116,8 @@ export default function Product() {
                     alt="Product dashboard detail"
                     width={900}
                     height={700}
+                    quality={100}
+                    sizes="(max-width: 1024px) 50vw, 22vw"
                   />
                 </div>
                 <div className="hero-thumb">
@@ -120,6 +126,8 @@ export default function Product() {
                     alt="Stakeholder collaboration overview"
                     width={900}
                     height={700}
+                    quality={100}
+                    sizes="(max-width: 1024px) 50vw, 22vw"
                   />
                 </div>
               </div>
@@ -154,6 +162,8 @@ export default function Product() {
                   alt="Digital twin platform interface"
                   width={1200}
                   height={900}
+                  quality={100}
+                  sizes="(max-width: 1024px) 100vw, 46vw"
                 />
               </div>
             </div>
@@ -193,7 +203,7 @@ export default function Product() {
 
         <section className="section item cta">
           <div className="cta-panel">
-            <span className="eyebrow">Next Step</span>
+            <span className="eyebrow">Continue</span>
             <h2>Use the product page as the destination for navigation, campaigns, and future conversion work.</h2>
             <p>
               The route is now in place and styled consistently with the rest of the
@@ -206,9 +216,11 @@ export default function Product() {
                   Explore Landing Page
                 </Button>
               </Link>
-              <Button type="button" $variant="transparent">
-                Request Access
-              </Button>
+              <Link href="/book-demo">
+                <Button type="button" $variant="transparent">
+                  Request Access
+                </Button>
+              </Link>
             </div>
           </div>
         </section>

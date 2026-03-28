@@ -128,6 +128,10 @@ const BlogPage = styled.div(() => [
       ${tw`overflow-hidden rounded-[1.8rem] border border-secondary-2 bg-[rgba(255,255,255,0.04)]`}
     }
 
+    .post-card-link {
+      ${tw`block h-full transition-transform duration-300 hover:-translate-y-1`}
+    }
+
     .post-card-image {
       ${tw`overflow-hidden border-b border-secondary-2 bg-[#081033]`}
     }
@@ -158,6 +162,10 @@ const BlogPage = styled.div(() => [
 
     .cta-panel {
       ${tw`overflow-hidden rounded-[2.2rem] border border-secondary-2 bg-[linear-gradient(135deg,rgba(17,55,202,0.9),rgba(4,11,34,0.95))] p-7 md:p-10`}
+    }
+
+    .cta-panel .eyebrow {
+      ${tw`mb-5`}
     }
 
     .cta-panel h2 {

@@ -1,5 +1,6 @@
 'use client'
 
+import { ChangeEvent, FormEvent, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button, Footer, Navbar } from '@/components'
@@ -23,7 +24,70 @@ const contactDetails = [
   },
 ]
 
+interface ContactFormValues {
+  name: string
+  email: string
+  company: string
+  message: string
+}
+
+const initialFormValues: ContactFormValues = {
+  name: '',
+  email: '',
+  company: '',
+  message: '',
+}
+
+const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+
 export default function Contact() {
+  const [formValues, setFormValues] = useState<ContactFormValues>(initialFormValues)
+  const [formErrors, setFormErrors] = useState<Partial<Record<keyof ContactFormValues, string>>>({})
+  const [submitMessage, setSubmitMessage] = useState('')
+
+  const validateForm = (values: ContactFormValues) => {
+    const nextErrors: Partial<Record<keyof ContactFormValues, string>> = {}
+
+    if (values.name.trim().length < 2) {
+      nextErrors.name = 'Name must contain at least 2 characters.'
+    }
+    if (!isValidEmail(values.email.trim())) {
+      nextErrors.email = 'Please enter a valid email address.'
+    }
+    if (values.company.trim().length < 2) {
+      nextErrors.company = 'Company must contain at least 2 characters.'
+    }
+    if (values.message.trim().length < 15) {
+      nextErrors.message = 'Message must contain at least 15 characters.'
+    }
+
+    return nextErrors
+  }
+
+  const handleFieldChange =
+    (field: keyof ContactFormValues) =>
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const value = event.target.value
+      setFormValues((prev) => ({ ...prev, [field]: value }))
+      setFormErrors((prev) => ({ ...prev, [field]: undefined }))
+      setSubmitMessage('')
+    }
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const nextErrors = validateForm(formValues)
+
+    if (Object.keys(nextErrors).length > 0) {
+      setFormErrors(nextErrors)
+      setSubmitMessage('')
+      return
+    }
+
+    setFormErrors({})
+    setSubmitMessage('Your inquiry is valid and ready to be submitted.')
+    setFormValues(initialFormValues)
+  }
+
   return (
     <ContactPage>
       <Navbar />
@@ -63,6 +127,8 @@ export default function Contact() {
                   width={1200}
                   height={900}
                   priority
+                  quality={100}
+                  sizes="(max-width: 1024px) 100vw, 44vw"
                 />
               </div>
               <div className="hero-thumbs">
@@ -100,25 +166,61 @@ export default function Contact() {
                 This is a presentational contact surface for now. It gives the page
                 structure and can be wired to a real submission flow later.
               </p>
-              <form className="form-grid">
+              <form className="form-grid" noValidate onSubmit={handleSubmit}>
                 <div className="field">
                   <label htmlFor="name">Name</label>
-                  <input id="name" type="text" placeholder="Your name" />
+                  <input
+                    id="name"
+                    type="text"
+                    placeholder="Your name"
+                    value={formValues.name}
+                    onChange={handleFieldChange('name')}
+                    className={formErrors.name ? 'has-error' : ''}
+                    aria-invalid={Boolean(formErrors.name)}
+                  />
+                  {formErrors.name ? <span className="field-error">{formErrors.name}</span> : null}
                 </div>
                 <div className="field">
                   <label htmlFor="email">Email</label>
-                  <input id="email" type="email" placeholder="you@company.com" />
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="you@company.com"
+                    value={formValues.email}
+                    onChange={handleFieldChange('email')}
+                    className={formErrors.email ? 'has-error' : ''}
+                    aria-invalid={Boolean(formErrors.email)}
+                  />
+                  {formErrors.email ? <span className="field-error">{formErrors.email}</span> : null}
                 </div>
                 <div className="field">
                   <label htmlFor="company">Company</label>
-                  <input id="company" type="text" placeholder="Company name" />
+                  <input
+                    id="company"
+                    type="text"
+                    placeholder="Company name"
+                    value={formValues.company}
+                    onChange={handleFieldChange('company')}
+                    className={formErrors.company ? 'has-error' : ''}
+                    aria-invalid={Boolean(formErrors.company)}
+                  />
+                  {formErrors.company ? <span className="field-error">{formErrors.company}</span> : null}
                 </div>
                 <div className="field">
                   <label htmlFor="message">Message</label>
-                  <textarea id="message" placeholder="Tell us what you want to discuss" />
+                  <textarea
+                    id="message"
+                    placeholder="Tell us what you want to discuss"
+                    value={formValues.message}
+                    onChange={handleFieldChange('message')}
+                    className={formErrors.message ? 'has-error' : ''}
+                    aria-invalid={Boolean(formErrors.message)}
+                  />
+                  {formErrors.message ? <span className="field-error">{formErrors.message}</span> : null}
                 </div>
+                {submitMessage ? <p className="form-status">{submitMessage}</p> : null}
                 <div className="form-actions">
-                  <Button type="button" $variant="light">
+                  <Button type="submit" $variant="light">
                     Send Inquiry
                   </Button>
                 </div>

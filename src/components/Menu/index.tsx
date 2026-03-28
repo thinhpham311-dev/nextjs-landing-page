@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ImageHamburger, MenuWrapper } from './styles'
 import { Button } from "@/components"
 import { FiArrowRight } from "react-icons/fi";
+import { SiTwitter, SiLinkedin, SiInstagram } from "react-icons/si";
 
 
 const Menu = () => {
@@ -67,6 +68,9 @@ const Menu = () => {
                     <div className="place-setting"></div>
                     <ul className='menu-list'>
                         <li>
+                            <Link href='/book-demo' className='menu-link'>Book a Demo <FiArrowRight /></Link>
+                        </li>
+                        <li>
                             <Link href='/product' className='menu-link'>Product <FiArrowRight /></Link>
                         </li>
                         <li>
@@ -85,13 +89,13 @@ const Menu = () => {
 
                     <ul className="menu-socials">
                         <li>
-                            <a href="https://twitter.com" className='menu-link' target="_blank" rel="noreferrer">Twitter</a>
+                            <a href="https://twitter.com" className='menu-link' target="_blank" rel="noreferrer"><SiTwitter /> Twitter</a>
                         </li>
                         <li>
-                            <a href="https://linkedin.com" className='menu-link' target="_blank" rel="noreferrer">Linkedin</a>
+                            <a href="https://linkedin.com" className='menu-link' target="_blank" rel="noreferrer"><SiLinkedin /> Linkedin</a>
                         </li>
                         <li>
-                            <a href="https://instagram.com" className='menu-link' target="_blank" rel="noreferrer">Instagram</a>
+                            <a href="https://instagram.com" className='menu-link' target="_blank" rel="noreferrer"><SiInstagram /> Instagram</a>
                         </li>
                     </ul>
 

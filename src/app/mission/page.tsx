@@ -106,6 +106,8 @@ export default function Mission() {
                   width={1200}
                   height={900}
                   priority
+                  quality={100}
+                  sizes="(max-width: 1024px) 100vw, 44vw"
                 />
               </div>
               <div className="hero-thumbs">
@@ -148,6 +150,8 @@ export default function Mission() {
                   alt="Mission impact visual"
                   width={1200}
                   height={900}
+                  quality={100}
+                  sizes="(max-width: 1024px) 100vw, 46vw"
                 />
               </div>
             </div>

@@ -21,9 +21,21 @@ const FooterWrapper = styled.footer(() => [
                         input{
                             ${tw`w-[calc(100%-50px)] h-[50px] text-4xs text-white font-type-1 bg-transparent focus:outline-0 `}
                         }
+                        input.has-error{
+                            ${tw`text-[#ff9f9f]`}
+                        }
                         button{
                             ${tw`h-[50px] w-[50px] text-3xs flex items-center justify-center`}
                         }
+                    }
+                    .form-message{
+                        ${tw`mt-2 text-5xs font-type-1`}
+                    }
+                    .form-message.error{
+                        ${tw`text-[#ff9f9f]`}
+                    }
+                    .form-message.success{
+                        ${tw`text-[#9df2b4]`}
                     }
                 }
                 .copy-right{

@@ -32,6 +32,12 @@ const CustomStyles = createGlobalStyle`
     letter-spacing: inherit;
 }
 
+  img{
+    image-rendering: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
   html.has-scroll-smooth {
     overflow: hidden; }
   

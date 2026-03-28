@@ -18,13 +18,13 @@ const Branchs = (props: any) => {
             <div className="branchs-list" >
                 <div className="branchs-sliders" >
                     {props.data.map((image: string, index: number) => <div className="branchs-slide" key={index}>
-                        <Image src={image} width={500} height={500} alt="" />
+                        <Image src={image} width={800} height={400} alt="" quality={100} sizes="300px" />
                     </div>
                     )}
                 </div>
                 <div className="branchs-sliders" >
                     {props.data.map((image1: string, index1: number) => <div className="branchs-slide" key={index1}>
-                        <Image src={image1} width={500} height={500} alt="" />
+                        <Image src={image1} width={800} height={400} alt="" quality={100} sizes="300px" />
                     </div>
                     )}
                 </div>

@@ -4,33 +4,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button, Footer, Navbar } from '@/components'
 import { BlogPage } from './styles'
-
-const posts = [
-  {
-    date: 'May 30, 2023',
-    title: "Magma At CBRE France's 3rd Tech Talk",
-    description:
-      'A look at how digital twins, tokenization, and real-estate operations were framed in front of industry stakeholders.',
-    image: '/magma-a-la-3eme-edition-du-tech-talk-de-cbre-france-1684942208038.jpeg',
-  },
-  {
-    date: 'May 25, 2023',
-    title: 'Workshop Blockchain Et Actif Digitaux',
-    description:
-      'How the team discussed blockchain, digital assets, and the role of trustworthy property information in the sector.',
-    image: '/workshop-blockchain-et-actif-digitaux-sba-16-min-scaled.jpg',
-  },
-  {
-    date: 'May 18, 2023',
-    title: 'Exploring The Potential Of Real Estate Tokenization',
-    description:
-      'An editorial view on why digital twins and tokenization belong in the same conversation for modern buildings.',
-    image: '/exploring-the-potential-of-real-estate-tokenization-digital-twins-magma.png',
-  },
-]
+import { blogPosts } from '@/constants/blogPosts'
 
 export default function Blog() {
-  const featured = posts[0]
+  const featured = blogPosts[0]
 
   return (
     <BlogPage>
@@ -71,6 +48,8 @@ export default function Blog() {
                   width={1200}
                   height={900}
                   priority
+                  quality={100}
+                  sizes="(max-width: 1024px) 100vw, 44vw"
                 />
               </div>
               <div className="hero-thumbs">
@@ -94,18 +73,29 @@ export default function Blog() {
               <h2>{featured.title}</h2>
               <div className="featured-meta">
                 <span>{featured.date}</span>
-                <span>Industry</span>
-                <span>Editorial</span>
+                <span>{featured.category}</span>
+                <span>{featured.readTime}</span>
               </div>
               <p className="mt-6">{featured.description}</p>
+              <div className="hero-actions">
+                <Link href={`/blog/${featured.slug}`}>
+                  <Button type="button" $variant="light">
+                    Read Article
+                  </Button>
+                </Link>
+              </div>
             </div>
             <div className="featured-visual">
-              <Image
-                src={featured.image}
-                alt={featured.title}
-                width={1200}
-                height={900}
-              />
+              <Link href={`/blog/${featured.slug}`}>
+                <Image
+                  src={featured.image}
+                  alt={featured.title}
+                  width={1200}
+                  height={900}
+                  quality={100}
+                  sizes="(max-width: 1024px) 100vw, 46vw"
+                />
+              </Link>
             </div>
           </div>
         </section>
@@ -121,16 +111,18 @@ export default function Blog() {
             </p>
           </div>
           <div className="posts-grid">
-            {posts.map((post) => (
-              <article className="post-card" key={post.title}>
-                <div className="post-card-image">
-                  <Image src={post.image} alt={post.title} width={1200} height={900} />
-                </div>
-                <div className="post-card-copy">
-                  <span>{post.date}</span>
-                  <strong>{post.title}</strong>
-                  <p>{post.description}</p>
-                </div>
+            {blogPosts.map((post) => (
+              <article className="post-card" key={post.slug}>
+                <Link href={`/blog/${post.slug}`} className="post-card-link">
+                  <div className="post-card-image">
+                    <Image src={post.image} alt={post.title} width={1200} height={900} quality={100} sizes="(max-width: 1024px) 100vw, 30vw" />
+                  </div>
+                  <div className="post-card-copy">
+                    <span>{post.date}</span>
+                    <strong>{post.title}</strong>
+                    <p>{post.description}</p>
+                  </div>
+                </Link>
               </article>
             ))}
           </div>

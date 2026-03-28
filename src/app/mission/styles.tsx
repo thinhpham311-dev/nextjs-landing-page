@@ -180,6 +180,10 @@ const MissionPage = styled.div(() => [
       ${tw`overflow-hidden rounded-[2.2rem] border border-secondary-2 bg-[linear-gradient(135deg,rgba(10,60,206,0.92),rgba(3,9,24,0.96))] p-7 md:p-10`}
     }
 
+    .cta-panel .eyebrow {
+      ${tw`mb-5`}
+    }
+
     .cta-panel h2 {
       ${tw`max-w-[760px] text-xs font-type-2 leading-[1.1] tracking-[-0.025em] text-white md:text-sm`}
     }

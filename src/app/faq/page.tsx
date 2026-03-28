@@ -79,6 +79,8 @@ export default function Faq() {
                   width={1200}
                   height={900}
                   priority
+                  quality={100}
+                  sizes="(max-width: 1024px) 100vw, 44vw"
                 />
               </div>
               <div className="hero-thumbs">

@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import Link from 'next/link'
 import { HeroWrapper, HeroBottom } from './styles'
 import { Button } from "@/components"
 
@@ -17,7 +18,9 @@ const Hero = () => {
                         <div className="hero--bottom-inner">
                             <div className="hero--bottom-inner-content">
                                 <h4 className="hero--bottom-inner-content--text">Create a Digital Twin Token (DTT®) of your <br /> existing building   and release the potential of<br /> Web3.</h4>
-                                <Button type="button" $variant='light'>LEARN MORE</Button>
+                                <Link href="/product">
+                                    <Button type="button" $variant='light'>VIEW PRODUCT</Button>
+                                </Link>
                             </div>
                             {/* <Button type="button" className="btn-scrolldown" $isSmall $isLink onClick={handleScrollDown}>Scroll Down<br /><BsChevronCompactDown /></Button> */}
                         </div>

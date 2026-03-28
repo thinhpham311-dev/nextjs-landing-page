@@ -129,12 +129,29 @@ const ContactPage = styled.div(() => [
     }
 
     .field input,
+    .field select,
     .field textarea {
       ${tw`w-full rounded-[1rem] border border-secondary-2 bg-[rgba(255,255,255,0.02)] px-4 py-3 text-5xs font-type-3 text-white outline-none transition-colors duration-300 focus:border-white`}
     }
 
+    .field select option {
+      ${tw`bg-[#0b163f] text-white`}
+    }
+
     .field textarea {
       ${tw`min-h-[150px] resize-none`}
+    }
+
+    .field .has-error {
+      ${tw`!border-[#ff7a7a]`}
+    }
+
+    .field-error {
+      ${tw`text-5xs font-type-3 text-[#ff9f9f]`}
+    }
+
+    .form-status {
+      ${tw`text-5xs font-type-3 text-[#9df2b4]`}
     }
 
     .form-actions {
@@ -147,6 +164,10 @@ const ContactPage = styled.div(() => [
 
     .cta-panel {
       ${tw`overflow-hidden rounded-[2.2rem] border border-secondary-2 bg-[linear-gradient(135deg,rgba(17,55,202,0.9),rgba(4,11,34,0.95))] p-7 md:p-10`}
+    }
+
+    .cta-panel .eyebrow {
+      ${tw`mb-5`}
     }
 
     .cta-panel h2 {

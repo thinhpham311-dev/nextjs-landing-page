@@ -39,6 +39,11 @@ const MenuWrapper = styled.div(() => [
             .menu-socials, .place-setting{
                 ${tw` px-[4vw]  flex items-center gap-x-10 xl:justify-start lg:justify-start justify-center  w-full h-[100px]`}
             }
+            .menu-socials{
+                .menu-link{
+                    ${tw`text-primary hover:text-black font-type-1 font-normal transition-colors duration-300 inline-flex items-center gap-2`}
+                }
+            }
         }
     `
 ])
