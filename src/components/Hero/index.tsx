@@ -2,7 +2,6 @@
 import React from 'react'
 import { HeroWrapper, HeroBottom } from './styles'
 import { Button } from "@/components"
-import { BsChevronCompactDown } from "react-icons/bs";
 
 
 

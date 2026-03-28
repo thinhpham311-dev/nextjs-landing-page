@@ -1,36 +1,35 @@
 'use client'
 import React, { useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 const LocomotiveProvider = (props: any) => {
     const containerRef = useRef<HTMLDivElement>(null)
+    const pathname = usePathname()
     return (
         <LocomotiveScrollProvider
             options={
                 {
-                    smooth: true,
-                    multiplier: 0.7,
-                    tablet: {
-                        smooth: true,
-                        multiplier: 1,
-                    },
-                    smartphone: {
-                        smooth: true,
-                        multiplier: 1,
-                    }
-                    // ... all available Locomotive Scroll instance options 
+                     smooth: false,
+                
                 }
             }
             watch={
                 [
-                    //..all the dependencies you want to watch to update the scroll.
-                    //  Basicaly, you would want to watch page/location changes
-                    //  For exemple, on Next.js you would want to watch properties like `router.asPath` (you may want to add more criterias if the instance should be update on locations with query parameters)
+                    pathname
                 ]
             }
+            location={pathname}
+            onLocationChange={(scroll: any) => {
+                scroll.update()
+                scroll.scrollTo(0, {
+                    duration: 0,
+                    disableLerp: true,
+                })
+            }}
             containerRef={containerRef}
         >
-            <main id="main" ref={containerRef} data-scroll-container>
+            <main id="main" ref={containerRef} data-scroll-container suppressHydrationWarning>
                 {props.children}
             </main>
         </LocomotiveScrollProvider>

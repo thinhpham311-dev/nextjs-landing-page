@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import Link from 'next/link'
 import { FooterWrapper } from "./styles"
 import { HiArrowRight } from "react-icons/hi2";
 
@@ -7,15 +8,15 @@ import { HiArrowRight } from "react-icons/hi2";
 const Footer = () => (
     <FooterWrapper>
         <div className="container">
-            <div className="footer-inner">
-                <div className="footer-inner--menu">
-                    <div><a href="">Mission</a></div>
-                    <div><a href="">Contact</a></div>
-                    <div><a href="">Product</a></div>
-                    <div><a href="">Privacy Policy</a></div>
-                    <div><a href="">Blog</a></div>
-                    <div><a href="">Terms</a></div>
-                    <div><a href="">FAQ</a></div>
+                <div className="footer-inner">
+                    <div className="footer-inner--menu">
+                        <div><Link href="/mission">Mission</Link></div>
+                        <div><Link href="/contact">Contact</Link></div>
+                        <div><Link href="/product">Product</Link></div>
+                        <div><a href="#">Privacy Policy</a></div>
+                        <div><Link href="/blog">Blog</Link></div>
+                        <div><a href="#">Terms</a></div>
+                    <div><Link href="/faq">FAQ</Link></div>
                 </div>
                 <div className="footer-inner--form">
                     <form>

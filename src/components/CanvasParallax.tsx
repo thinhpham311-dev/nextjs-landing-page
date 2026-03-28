@@ -14,21 +14,26 @@ interface CanvasProps {
 gsap.registerPlugin(ScrollTrigger);
 
 const CanvasParallax = ({ dataImages, isElCircle }: CanvasProps) => {
-    let images: any[] = []
-    const imageSeq = { frame: 1 };
+    const imagesRef = useRef<HTMLImageElement[]>([])
+    const imageSeqRef = useRef({ frame: 1 })
     const { height, width } = useWindowDimensions();
     const { scroll } = useLocomotiveScroll();
     const canvasRef = useRef<HTMLDivElement>(null)
-    const scrollCanvas = canvasRef.current as HTMLDivElement
 
     const render = () => {
         const canvasEl = canvasRef.current?.querySelector("canvas")
-        const canvas = canvasEl as HTMLCanvasElement
+        const canvas = canvasEl as HTMLCanvasElement | null
+        if (!canvas || !height || !width) {
+            return
+        }
         canvas.height = height
         canvas.width = width
-        const context = canvasEl?.getContext("2d");
+        const context = canvas.getContext("2d");
         if (context) {
-            scaleImage(images[imageSeq.frame], context);
+            const image = imagesRef.current[imageSeqRef.current.frame]
+            if (image) {
+                scaleImage(image, context);
+            }
         }
     }
 
@@ -54,7 +59,9 @@ const CanvasParallax = ({ dataImages, isElCircle }: CanvasProps) => {
     }
 
     const createScroll = () => {
-        if (scroll) {
+        const scrollCanvas = canvasRef.current
+        const imageSeq = imageSeqRef.current
+        if (scroll && scrollCanvas) {
             gsap.to(imageSeq, {
                 frame: dataImages.length - 1,
                 snap: "frame",
@@ -67,26 +74,39 @@ const CanvasParallax = ({ dataImages, isElCircle }: CanvasProps) => {
                     end: `250% top`,
                     scrub: .1,
                 },
-                onUpdate: render,
+                onUpdate: () => {
+                    imageSeqRef.current.frame = imageSeq.frame
+                    render()
+                },
             });
         }
     }
 
     useEffect(() => {
+        imagesRef.current = []
+        const imageSeq = imageSeqRef.current
+        imageSeq.frame = 1
+
         for (let i = 0; i < dataImages.length; i++) {
             const img = new Image();
             img.src = dataImages[i];
             img.srcset = dataImages[i];
-            images.push(img)
+            imagesRef.current.push(img)
         }
 
-        images[1].onload = render;
+        const firstRenderableImage = imagesRef.current[1]
+        if (firstRenderableImage) {
+            firstRenderableImage.onload = render;
+        }
         createScroll()
         return () => {
-            ScrollTrigger.addEventListener("refresh", () => scroll?.update());
-            ScrollTrigger.refresh();
+            ScrollTrigger.getAll().forEach((trigger) => {
+                if (trigger.vars.trigger === canvasRef.current) {
+                    trigger.kill();
+                }
+            })
         };
-    }, [scrollCanvas, height, width, dataImages])
+    }, [height, width, dataImages, scroll])
 
     return (
         <div className="inner-canvas" ref={canvasRef} data-scroll data-scroll-sticky data-scroll-target="#section-canvas">

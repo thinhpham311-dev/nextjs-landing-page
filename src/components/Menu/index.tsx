@@ -67,31 +67,31 @@ const Menu = () => {
                     <div className="place-setting"></div>
                     <ul className='menu-list'>
                         <li>
-                            <Link href='' className='menu-link'>Product <FiArrowRight /></Link>
+                            <Link href='/product' className='menu-link'>Product <FiArrowRight /></Link>
                         </li>
                         <li>
-                            <Link href='' className='menu-link'>Mission <FiArrowRight /></Link>
+                            <Link href='/mission' className='menu-link'>Mission <FiArrowRight /></Link>
                         </li>
                         <li>
-                            <Link href='' className='menu-link'>Blog <FiArrowRight /></Link>
+                            <Link href='/blog' className='menu-link'>Blog <FiArrowRight /></Link>
                         </li>
                         <li>
-                            <Link href='' className='menu-link'>FAQ <FiArrowRight /></Link>
+                            <Link href='/faq' className='menu-link'>FAQ <FiArrowRight /></Link>
                         </li>
                         <li>
-                            <Link href='' className='menu-link'>Contact <FiArrowRight /></Link>
+                            <Link href='/contact' className='menu-link'>Contact <FiArrowRight /></Link>
                         </li>
                     </ul>
 
                     <ul className="menu-socials">
                         <li>
-                            <Link href="" className='menu-link'>Twitter</Link>
+                            <a href="https://twitter.com" className='menu-link' target="_blank" rel="noreferrer">Twitter</a>
                         </li>
                         <li>
-                            <Link href="" className='menu-link'>Linkedin</Link>
+                            <a href="https://linkedin.com" className='menu-link' target="_blank" rel="noreferrer">Linkedin</a>
                         </li>
                         <li>
-                            <Link href="" className='menu-link'>Instagram</Link>
+                            <a href="https://instagram.com" className='menu-link' target="_blank" rel="noreferrer">Instagram</a>
                         </li>
                     </ul>
 
